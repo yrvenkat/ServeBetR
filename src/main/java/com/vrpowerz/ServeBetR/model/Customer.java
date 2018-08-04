@@ -1,6 +1,7 @@
 package com.vrpowerz.ServeBetR.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -14,7 +15,7 @@ import java.util.Set;
 @Table(name = "vrpowerz_customers")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "customer_type", discriminatorType = DiscriminatorType.STRING)
-public abstract class Customer {
+public abstract class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -103,6 +104,10 @@ public abstract class Customer {
     }
 
     public Customer() {
+    }
+
+    public Customer(Long id) {
+        this.id = id;
     }
 
     public Customer(String profileImageURL, Set<String> email, Set<String> phone, Set<String> address, Date timestamp, String description) {

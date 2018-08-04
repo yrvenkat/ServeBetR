@@ -13,7 +13,7 @@ import java.util.Set;
 @DiscriminatorValue("INDIVIDUAL")
 public class Individual extends Customer {
 
-    @Column(name = "firstname", length = 25, nullable = false)
+    @Column(name = "firstname", length = 25)
     private String firstname;
 
     @Column(name = "lastname", length = 25)
@@ -59,6 +59,10 @@ public class Individual extends Customer {
     }
 
     public Individual() {
+    }
+
+    public Individual(Long id) {
+        super(id);
     }
 
     public Individual(String profileImageURL, Set<String> email, Set<String> phone, Set<String> address, Date timestamp, String description, String firstname, String lastname, Company company, String jobPosition) {

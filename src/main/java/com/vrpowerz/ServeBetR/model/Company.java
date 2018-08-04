@@ -15,7 +15,7 @@ import java.util.Set;
 @DiscriminatorValue("COMPANY")
 public class Company extends Customer {
 
-    @Column(name = "company_name", length = 100, nullable = false)
+    @Column(name = "company_name", length = 100)
     private String companyName;
 
     @Column(name = "website", length = 50)
@@ -49,6 +49,10 @@ public class Company extends Customer {
     }
 
     public Company() {
+    }
+
+    public Company(Long id) {
+        super(id);
     }
 
     public Company(String profileImageURL, Set<String> email, Set<String> phone, Set<String> address, Date timestamp, String description, String companyName, String website, String contactPerson) {

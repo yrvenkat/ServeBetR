@@ -1,8 +1,11 @@
 package com.vrpowerz.ServeBetR.model;
 
-import com.vrpowerz.ServeBetR.enums.Genders;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.vrpowerz.ServeBetR.enums.Gender;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -13,14 +16,14 @@ import java.util.Set;
 
 @Entity
 @Table(name = "vrpowerz_users")
-public class User {
+public class User implements Serializable {
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "username", length = 25, nullable = false)
+    @Column(name = "username", length = 25, nullable = false, unique = true)
     private String username;
 
     @Column(name = "firstname", length = 25, nullable = false)
@@ -30,8 +33,8 @@ public class User {
     private String lastname;
 
     @Column(name = "gender", length = 6)
-    @Enumerated
-    private Genders gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
@@ -103,11 +106,11 @@ public class User {
         this.lastname = lastname;
     }
 
-    public Genders getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(Genders gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -143,10 +146,12 @@ public class User {
         this.address = address;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     public void setPassword(String password) {
         this.password = password;
     }
@@ -183,10 +188,12 @@ public class User {
         this.description = description;
     }
 
+    @JsonIgnore
     public String getRetypePassword() {
         return retypePassword;
     }
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     public void setRetypePassword(String retypePassword) {
         this.retypePassword = retypePassword;
     }
@@ -194,7 +201,11 @@ public class User {
     public User() {
     }
 
-    public User(String username, String firstname, String lastname, Genders gender, Date dateOfBirth, Set<String> email, Set<String> phone, Set<String> address, String password, boolean active, UserRole role, Date timeStamp, String description, String retypePassword) {
+    public User(Long id) {
+        this.id = id;
+    }
+
+    public User(String username, String firstname, String lastname, Gender gender, Date dateOfBirth, Set<String> email, Set<String> phone, Set<String> address, String password, boolean active, UserRole role, Date timeStamp, String description, String retypePassword) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;

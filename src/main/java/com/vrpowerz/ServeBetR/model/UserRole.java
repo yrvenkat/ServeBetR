@@ -1,6 +1,7 @@
 package com.vrpowerz.ServeBetR.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "vrpowerz_user_roles")
-public class UserRole {
+public class UserRole implements Serializable {
 
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,5 +78,9 @@ public class UserRole {
         this.roleKey = roleKey;
         this.timeStamp = timeStamp;
         this.description = description;
+    }
+
+    public UserRole(Integer id) {
+        this.id = id;
     }
 }

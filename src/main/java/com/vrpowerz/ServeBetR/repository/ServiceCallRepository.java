@@ -1,6 +1,6 @@
 package com.vrpowerz.ServeBetR.repository;
 
-import com.vrpowerz.ServeBetR.model.User;
+import com.vrpowerz.ServeBetR.model.ServiceCall;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
@@ -10,8 +10,6 @@ import org.springframework.data.repository.CrudRepository;
  *
  */
 
-public interface UserRepository extends CrudRepository<User, Long> {
-    User findByUsername(String Username);
-
-    Page<User> findAll(Pageable pageable);
+public interface ServiceCallRepository extends CrudRepository<ServiceCall, Long> {
+    Page<ServiceCall> findAll(Pageable pageable);
 }

@@ -6,6 +6,6 @@ package com.vrpowerz.ServeBetR.enums;
  */
 
 
-public enum Genders {
+public enum Gender {
     Male,Female,Others
 }
