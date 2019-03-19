@@ -53,7 +53,7 @@ public class UserResource {
         }
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public Response saveUser(@RequestBody final User user){
         try {
             if(isUserExist(user.getUsername())){
@@ -74,7 +74,7 @@ public class UserResource {
         }
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public Response updateUser(@RequestBody final User user){
         try {
             User user1 = userRepository.findById(user.getId()).orElse(null);
